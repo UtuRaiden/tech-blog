@@ -1,10 +1,12 @@
 const router = require('express').Router();
-const { Comment } = require('../../models');
+const { Comment, User } = require('../../models');
 //  uses api/comments
 router.get('/', async (req,res)=>{
     try{
             const commentData = await Comment.findAll({
-            //include:[{model: User }],
+            include:[{
+                model: User, 
+                attributes:['name']}],
             });
     res.status(200).json(commentData);
     }catch (err) {

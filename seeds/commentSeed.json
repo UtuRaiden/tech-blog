@@ -1,16 +1,16 @@
 [
     {
-        "text":"This will be useful!",
+        "comment_text":"This will be useful!",
         "user_id": 2,
         "post_id": 1
     },
     {
-        "text":"I could use some random quizzes!",
+        "comment_text":"I could use some random quizzes!",
         "user_id": 1,
         "post_id": 2
     },
     {
-        "text":"So an online sterling game? Sounds fun!",
+        "comment_text":"So an online sterling game? Sounds fun!",
         "user_id": 2,
         "post_id": 3
     }

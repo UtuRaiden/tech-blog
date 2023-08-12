@@ -1,10 +1,14 @@
 const router = require('express').Router();
-const { Post } = require('../../models');
+const { Post, User, Comment } = require('../../models');
 
 router.get('/', async (req,res)=>{
     try{
             const postData = await Post.findAll({
-            //include:[{model: User }],
+              include:[
+                {
+                    model: User,
+                    attributes:['name'],
+                }],
             });
     res.status(200).json(postData);
     }catch (err) {
@@ -16,7 +20,7 @@ router.get('/:id', async (req,res)=>{
 
   try{
     const postData = await Post.findByPk(req.params.id,{
-       include:[{model: Comment }],
+      include:[{model: Comment, attributes:['user_id', 'comment_text'] }],
   });
   if (!postData){
     res.status(404).json({message: "No post with that ID!"})
