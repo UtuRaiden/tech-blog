@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Post } = require('../models');
+const { User, Post, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
 // Prevent non logged in users from viewing the homepage
@@ -33,6 +33,41 @@ router.get('/login', (req, res) => {
   }
 
    res.render('login');
+});
+
+router.get('/post/:id', async (req, res) => {
+  try {
+    console.log('req params id:',req.params.id)
+
+    const postData = await Post.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: ['username'],
+        },
+        {
+          model: Comment,
+          attributes: ['user_id','post_id','comment_text','date_created'],
+          include: {
+            model: User,
+            attributes: ['username']
+          }
+        }
+      ],
+    });
+    console.log(postData)
+
+    const post = postData.get({ plain: true });
+    
+    console.log(post)
+    res.render('post', {
+      ...post,
+      logged_in: req.session.logged_in
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json(err);
+  }
 });
 
 module.exports = router;
