@@ -6,7 +6,7 @@ router.get('/', async (req,res)=>{
             const commentData = await Comment.findAll({
             include:[{
                 model: User, 
-                attributes:['name']}],
+                attributes:['username']}],
             });
     res.status(200).json(commentData);
     }catch (err) {

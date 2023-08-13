@@ -7,7 +7,7 @@ router.get('/', async (req,res)=>{
               include:[
                 {
                     model: User,
-                    attributes:['name'],
+                    attributes:['username'],
                 }],
             });
     res.status(200).json(postData);
