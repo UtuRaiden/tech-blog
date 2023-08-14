@@ -1,0 +1,38 @@
+a {
+    color: hotpink;
+  }
+
+#homepage {
+    padding-right:10px ;
+}
+#dashboard {
+    padding-right:10px ;
+}
+#logout {
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    font-family: arial, sans-serif;
+    color: hotpink;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+h2{
+    font-weight:bolder;
+}
+div.col-auto{
+    border-style: groove;
+}
+div.col-md-5{
+    border-style: groove;
+}
+div.col-md-6{
+    border-style: groove;
+}
+div.col-md-7{
+    border-style: groove;
+}
+#update{
+    background-color: lightblue;
+}

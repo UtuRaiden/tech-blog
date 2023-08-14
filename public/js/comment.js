@@ -1,18 +1,18 @@
 const newFormHandler = async (event) => {
     event.preventDefault();
   
-    const content = document.querySelector('#comment-text').value.trim();
+    const comment_text = document.querySelector('#comment-text').value.trim();
 
     if (event.target.hasAttribute('data-id')) {
       const post_id = event.target.getAttribute('data-id');
 
 
-      if (content) {
+      if (comment_text) {
         const response = await fetch(`/api/comments`, {
           method: 'post',
           body: JSON.stringify({ 
             post_id, 
-            content 
+            comment_text 
           }),
           headers: {
             'Content-Type': 'application/json',
