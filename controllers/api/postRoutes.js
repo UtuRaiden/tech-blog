@@ -1,7 +1,8 @@
+// imports express router and the Post and User model
 const router = require('express').Router();
 const { Post, User } = require('../../models');
 const withAuth = require('../../utils/auth');
-
+//gets all the posts and displays the username of the creator
 router.get('/', async (req,res)=>{
     try{
             const postData = await Post.findAll({
@@ -16,7 +17,7 @@ router.get('/', async (req,res)=>{
             res.status(500).json(err)
     }
 });
-
+//gets a single post
 router.get('/:id', async (req,res)=>{
 
   try{
@@ -27,7 +28,7 @@ router.get('/:id', async (req,res)=>{
   res.status(200).json(postData);
   }catch (err){res.status(500).json(err)}
 });
-
+//creates a new post
 router.post('/', async (req, res) => {
   try {
     const post = await Post.create({
@@ -41,7 +42,7 @@ router.post('/', async (req, res) => {
     res.status(400).json(err);
   }
 });
-
+//deletes a post with a specific id
 router.delete('/:id', withAuth, async (req,res)=>{
   try{
     const postDelete = await Post.destroy({
@@ -58,6 +59,7 @@ router.delete('/:id', withAuth, async (req,res)=>{
     res.status(500).json(err);
   }
 })
+//updates a single id
 router.put('/:id', withAuth, async (req, res) => {
   try {
     const postData = await Post.update({

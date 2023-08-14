@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { User, Post, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
-// Prevent non logged in users from viewing the homepage
+// Allows non-logged in users to view the homepage
 router.get('/', async (req, res) => {
   try {
     const postData = await Post.findAll({
@@ -11,10 +11,10 @@ router.get('/', async (req, res) => {
         model:User,
         attributes:['username'],
     }]})
-
+    //orders the data so it can be readable by the .render
     const posts = postData.map((post) => post.get({ plain: true }));
 
-    // Pass serialized data and session flag into template
+    // gives ordered data to display the homepage
     res.render('homepage', { 
       posts, 
       loggedIn: req.session.loggedIn 
@@ -35,11 +35,9 @@ router.get('/login', (req, res) => {
 
 
 
-
+//gets a single post after clicking on it and renders that post
 router.get('/post/:id', withAuth, async (req, res) => {
   try {
-    console.log('req params id:',req.params.id)
-
     const postData = await Post.findByPk(req.params.id, {
       include: [
         {
@@ -56,25 +54,20 @@ router.get('/post/:id', withAuth, async (req, res) => {
         }
       ],
     });
-    console.log(postData)
 
     const post = postData.get({ plain: true });
     
-    console.log(post)
     res.render('post', {
       ...post,
       logged_in: req.session.logged_in
     });
   } catch (err) {
-    console.error(err);
     res.status(500).json(err);
   }
 });
-
+// gets a single post that can be edited and renders it
 router.get('/post/:id/edit', withAuth, async (req, res) => {
   try {
-    console.log('req params id:',req.params.id)
-
     const postData = await Post.findByPk(req.params.id, {
       include: [
         {
@@ -91,11 +84,9 @@ router.get('/post/:id/edit', withAuth, async (req, res) => {
         }
       ],
     });
-    console.log(postData)
 
     const post = postData.get({ plain: true });
-    
-    console.log(post)
+
     res.render('post-edit', {
       ...post,
       logged_in: req.session.logged_in

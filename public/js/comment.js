@@ -1,10 +1,11 @@
-const newFormHandler = async (event) => {
+//functions that creates a comment using the api
+const newComment = async (event) => {
     event.preventDefault();
   
     const comment_text = document.querySelector('#comment-text').value.trim();
 
-    if (event.target.hasAttribute('data-id')) {
-      const post_id = event.target.getAttribute('data-id');
+    if (event.target.hasAttribute('comment-id')) {
+      const post_id = event.target.getAttribute('comment-id');
 
 
       if (comment_text) {
@@ -27,8 +28,5 @@ const newFormHandler = async (event) => {
       }
     }
   };
-
-
-  document
-  .querySelector('.comment-post-form')
-  .addEventListener('click', newFormHandler);
+//adds event listener to add comment button
+  document.querySelector('.comment-post-form').addEventListener('click', newComment);

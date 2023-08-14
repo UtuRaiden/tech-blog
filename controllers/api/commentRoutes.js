@@ -1,8 +1,9 @@
+//import express router and Comment Model
 const router = require('express').Router();
-const { Comment, User } = require('../../models');
+const { Comment } = require('../../models');
 const withAuth = require('../../utils/auth')
 //  uses api/comments
-
+//creates a new comment only if WithAuth passes
 router.post('/', withAuth, async (req, res) => {
     try {
       const newComment = await Comment.create({
@@ -17,7 +18,7 @@ router.post('/', withAuth, async (req, res) => {
     }
 });
 
-// Delete a comment
+// Delete a comment only if withAuth passes
 router.delete('/:id', withAuth, async (req, res) => {
     try {
       const commentData = await Comment.destroy({

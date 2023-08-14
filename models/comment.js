@@ -1,13 +1,10 @@
+//require the necessary files
 const { Model, DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
-
-class Comment extends Model {
-    checkPassword(loginPw) {
-      return bcrypt.compareSync(loginPw, this.password);
-    }
-}
-
+// comment is an extension of the model datatype from sequelize
+class Comment extends Model {}
+// defines all the possible characteristics of a comment
 Comment.init(
     {
       id: {

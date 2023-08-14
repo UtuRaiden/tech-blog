@@ -1,3 +1,4 @@
+// im port sequelize with my environment variables
 const Sequelize = require('sequelize');
 require('dotenv').config();
 

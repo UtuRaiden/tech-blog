@@ -1,7 +1,7 @@
 const User = require('./User');
 const Post = require('./Post');
 const Comment = require('./comment');
-
+// defines what model belongs to what
 User.hasMany(Post, {
   foreignKey: 'user_id',
   onDelete: 'CASCADE'

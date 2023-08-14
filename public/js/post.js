@@ -1,3 +1,4 @@
+//new, edit and delete functions
 const newPost = async (event) => {
     event.preventDefault();
   
@@ -46,7 +47,7 @@ const newPost = async (event) => {
       }
     }
   };
-
+// when update post button is pressed sends the user to the corresponding page
   const sendToUpdate = async (event) =>{
     if (event.target.hasAttribute('update-id')){
       const id = event.target.getAttribute('update-id');

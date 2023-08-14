@@ -1,13 +1,13 @@
 const { Model, DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
-
+//user is an extension of a model from sequelize and also checks to see if the inputted password matches whats on file
 class User extends Model {
   checkPassword(loginPw) {
     return bcrypt.compareSync(loginPw, this.password);
   }
 }
-
+//declares all the characteristics of a user
 User.init(
   {
     id: {

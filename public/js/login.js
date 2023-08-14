@@ -1,4 +1,5 @@
-const loginFormHandler = async (event) => {
+//login and signup functions
+const login = async (event) => {
     event.preventDefault();
     console.log('hello login')
   
@@ -20,7 +21,7 @@ const loginFormHandler = async (event) => {
     }
   };
   
-  const signupFormHandler = async (event) => {
+  const signup = async (event) => {
     event.preventDefault();
     console.log('hello sign up')
   
@@ -45,9 +46,9 @@ const loginFormHandler = async (event) => {
   
   document
     .querySelector('.login-form')
-    .addEventListener('submit', loginFormHandler);
+    .addEventListener('submit', login);
   
   document
     .querySelector('.signup-form')
-    .addEventListener('submit', signupFormHandler);
+    .addEventListener('submit', signup);
   
